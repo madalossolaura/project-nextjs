@@ -27,7 +27,7 @@ export default function Menu() {
             <MenuWrapper.MiddleSide>
                 {links.map(function (link) {
                     return (
-                        <li>
+                        <li key={link.url}>
                             <a href={link.url}>
                                 {link.texto}
                             </a>

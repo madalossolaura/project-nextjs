@@ -1,6 +1,20 @@
 import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 import styled, { css } from 'styled-components';
 
+const ButtonGhost = css`
+    color: #FB7B6B;
+    background: transparent;
+`
+const ButtonDefault = css`
+    //color: #fff;
+    background-color: ${function(props){
+        return props.theme.colors.primary.main.color
+    }};
+    color: ${function(props){
+        return props.theme.colors.primary.main.contrastText
+    }};
+`
+
 export const Button = styled.button`
     border: 0;
     cursor: pointer;
@@ -8,17 +22,12 @@ export const Button = styled.button`
     font-weight: bold;
     opacity: 1;
     border-radius: 8px;
-    color: #fff;
-    background-color: #D7385E;
     ${function(props) {
         if(props.ghost) {
-            return css`
-                background:transparent;
-            `
+            return ButtonGhost;
         }
-    }
-
-    }
+        return ButtonDefault;
+    }}
     &:hover,
     &:focus {
     opacity: .5;

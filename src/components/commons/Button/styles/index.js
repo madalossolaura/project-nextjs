@@ -1,17 +1,19 @@
 import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 import styled, { css } from 'styled-components';
+import get from 'lodash/get';
 
 const ButtonGhost = css`
-    color: #FB7B6B;
+    color: ${function(props){
+        return get(props.theme, `colors.${props.variant}.color`)
+    }};
     background: transparent;
 `
 const ButtonDefault = css`
-    //color: #fff;
     background-color: ${function(props){
-        return props.theme.colors.primary.main.color
+        return get(props.theme, `colors.${props.variant}.color`)
     }};
     color: ${function(props){
-        return props.theme.colors.primary.main.contrastText
+        return get(props.theme, `colors.${props.variant}.contrastText`)
     }};
 `
 
@@ -22,12 +24,9 @@ export const Button = styled.button`
     font-weight: bold;
     opacity: 1;
     border-radius: 8px;
-    ${function(props) {
-        if(props.ghost) {
-            return ButtonGhost;
-        }
-        return ButtonDefault;
-    }}
+    transition: opacity ${({ theme }) => theme.transition};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
     &:hover,
     &:focus {
     opacity: .5;

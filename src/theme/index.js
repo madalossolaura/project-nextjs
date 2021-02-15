@@ -41,6 +41,13 @@ export const colors = {
   
   export default {
     colors,
+    breakpoints: {
+      xs: 0,
+      sm:480,
+      md: 762,
+      lg: 992,
+      xl: 1200,
+    },
     borderRadius: '12px',
     transition: '200ms ease-in-out',
     fontFamily: '\'Rubik\', sans-serif',

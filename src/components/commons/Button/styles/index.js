@@ -1,6 +1,7 @@
 import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
+import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
 
 const ButtonGhost = css`
     color: ${function(props){
@@ -31,4 +32,13 @@ export const Button = styled.button`
     &:focus {
     opacity: .5;
     }
+
+    ${breakpointsMedia({
+        xs: css `
+            /* All devices */
+        `,
+        md: css`
+        /* From md breakpoint */
+        `
+    })}
 `;

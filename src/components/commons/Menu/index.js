@@ -2,6 +2,7 @@ import React from 'react';
 import { MenuWrapper } from './styles/MenuWrapper';
 import { Button } from '../Button/styles'
 import { Logo } from '../../../theme/Logo';
+import Text from '../../foundation/Text';
 
 const links = [
     {
@@ -28,9 +29,9 @@ export default function Menu() {
                 {links.map(function (link) {
                     return (
                         <li key={link.url}>
-                            <a href={link.url}>
+                            <Text variant="smallestException" tag="a" href={link.url}>
                                 {link.texto}
-                            </a>
+                            </Text>
                         </li>
                     )
                 })}

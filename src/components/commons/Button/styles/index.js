@@ -40,9 +40,11 @@ export const Button = styled.button`
     ${breakpointsMedia({
         xs: css`
             /* All devices */
+            ${TextStyleVariantsMap.smallestException}
         `,
         md: css`
-        /* From md breakpoint */
+            /* From md breakpoint */
+            ${TextStyleVariantsMap.paragraph1}
         `
     })}
 `;

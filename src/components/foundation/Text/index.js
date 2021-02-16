@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-export const TextStyleVariantMap = {
+export const TextStyleVariantsMap = {
     paragraph1: css`
     font-size: ${({ theme }) => theme.typographyVariants.paragraph1.fontSize};
     font-weight: ${({ theme }) => theme.typographyVariants.paragraph1.fontWeight};
@@ -17,7 +17,7 @@ export const TextStyleVariantMap = {
 };
 
 const TextBase = styled.span`
-    ${(props) => TextStyleVariantMap[props.variant]}
+    ${(props) => TextStyleVariantsMap[props.variant]}
 `;
 
 export default function Text({tag, variant, children}) {
@@ -31,13 +31,13 @@ export default function Text({tag, variant, children}) {
     );
 }
 
-Text.PropTypes = {
-    tag: PropTypes.string.isRequired,
-    variant: PropTypes.string.isRequired,
-    children: PropTypes.node.isRequired,
-}
-
 Text.defaultProps = {
     tag: 'span',
     variant: 'paragraph1',
 }
+
+Text.propTypes = {
+	tag: PropTypes.string.isRequired,
+	variant: PropTypes.string,
+	children: PropTypes.node.isRequired,
+};

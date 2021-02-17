@@ -1,8 +1,7 @@
-import { loadGetInitialProps } from 'next/dist/next-server/lib/utils';
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
 import { breakpointsMedia } from '../../../../theme/utils/breakpointsMedia';
-import TextStyleVariantsMap from '../../../foundation/Text/index'
+import { TextStyleVariantsMap } from '../../../foundation/Text/index'
 
 const ButtonGhost = css`
     color: ${function(props){

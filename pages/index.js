@@ -1,9 +1,10 @@
-import Menu from "../src/components/commons/Menu";
-import Footer from "../src/components/commons/Footer";
-import Text from "../src/components/foundation/Text";
-import { Button } from "../src/components/commons/Button/styles";
-import { Grid } from "../src/components/foundation/layout/Grid";
-import { Box } from "../src/components/foundation/layout/Box";
+import React from 'react';
+import Menu from '../src/components/commons/Menu';
+import Footer from '../src/components/commons/Footer';
+import Text from '../src/components/foundation/Text';
+import Button from '../src/components/commons/Button';
+import Grid from '../src/components/foundation/layout/Grid';
+import Box from '../src/components/foundation/layout/Box';
 
 export default function Home() {
   return (
@@ -34,8 +35,8 @@ export default function Home() {
               tag="h1"
               color="tertiary.main"
               textAlign={{
-                xs: "center",
-                md: "left",
+                xs: 'center',
+                md: 'left',
               }}
             >
               Compartilhe momentos e conecte-se com amigos
@@ -45,19 +46,20 @@ export default function Home() {
               tag="p"
               color="tertiary.light"
               textAlign={{
-                xs: "center",
-                md: "left",
+                xs: 'center',
+                md: 'left',
               }}
+              marginTop="0"
             >
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the industry`s standard dummy text
               ever since the 1500s.
             </Text>
 
             <Button
               margin={{
-                xs: "auto",
-                md: "initial",
+                xs: 'auto',
+                md: 'initial',
               }}
               display="block"
               variant="primary.main"
@@ -67,8 +69,9 @@ export default function Home() {
           </Grid.Col>
           <Grid.Col value={{ xs: 12, md: 6 }}>
             <img
-              style={{ display: "block", margin: "auto" }}
-              src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
+              style={{ display: 'block', margin: 'auto' }}
+              src="../images/phones.png"
+              alt="Celular com a conta do Nicolas Cage"
             />
           </Grid.Col>
         </Grid.Row>

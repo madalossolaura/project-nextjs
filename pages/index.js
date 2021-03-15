@@ -79,7 +79,6 @@ export default function Home() {
               display="block"
               variant="primary.main"
               onClick={() => {
-                console.log('isModalOpen', isModalOpen);
                 setModalState(!isModalOpen);
               }}
             >

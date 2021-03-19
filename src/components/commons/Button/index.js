@@ -1,79 +1,92 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import get from 'lodash/get';
-import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
-import { TextStyleVariantsMap } from '../../foundation/Text/index';
-import propToStyle from '../../../theme/utils/propToStyle';
 import { Link } from '../Link';
+import { TextStyleVariantsMap } from '../../foundation/Text';
+import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
+import propToStyle from '../../../theme/utils/propToStyle';
 
 const ButtonGhost = css`
-    color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
-    background: transparent;
+  color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
+  background: transparent; 
 `;
 
 const ButtonDefault = css`
-    background-color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
-    color: ${(props) => get(props.theme, `colors.${props.variant}.contrastText`)};
+  color: white;
+  background-color: ${(props) => get(props.theme, `colors.${props.variant}.color`)};
+  color: ${(props) => get(props.theme, `colors.${props.variant}.contrastText`)};
 `;
 
 const ButtonWrapper = styled.button`
-    border: 0;
-    cursor: pointer;
-    padding: 12px 26px;
-    font-weight: bold;
-    opacity: 1;
-    border-radius: 8px;
+  border: 0;
+  cursor: pointer;
+  padding: 12px 26px;
+  font-weight: bold;
+  opacity: 1;
+  border-radius: 8px;
 
-    ${TextStyleVariantsMap.smallestException}
+  ${TextStyleVariantsMap.smallestException}
 
-    transition: opacity ${({ theme }) => theme.transition};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    ${({ ghost }) => (ghost ? ButtonGhost : ButtonDefault)}
-    &:hover,
-    &:focus {
-    opacity: .5;
+  ${(props) => {
+    if (props.ghost) {
+      return ButtonGhost;
     }
+    return ButtonDefault;
+  }}
+  transition: opacity ${({ theme }) => theme.transition};
+  border-radius: ${(props) => props.theme.borderRadius};
+  &:hover,
+  &:focus {
+    opacity: .5;
+  }
 
-    ${breakpointsMedia({
+  ${breakpointsMedia({
     xs: css`
-            /* All devices */
-            ${TextStyleVariantsMap.smallestException}
-        `,
+      /* All devices */
+      ${TextStyleVariantsMap.smallestException}
+    `,
     md: css`
-            /* From md breakpoint */
-            ${TextStyleVariantsMap.paragraph1}
-        `,
+     /* From md breakpoint */
+     ${TextStyleVariantsMap.paragraph1}
+    `,
   })}
 
-    &:disabled {
-        cursor: not-allowed;
-        opacity: .2;
-    }
-    ${({ fullWidth }) => fullWidth && css`
-        width: 100%;
-    `};
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .2;
+  }
 
-    ${propToStyle('margin')}
-    ${propToStyle('display')}
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `};
+
+  ${propToStyle('margin')}
+  ${propToStyle('display')}
 `;
 
-const Button = ({ href, ...props }) => {
-    const isLink = Boolean(href);
-    const componentTag = isLink ? Link : 'button';
-  
-    return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <ButtonWrapper as={componentTag} href={href} {...props} />
-    );
-  };
-  
-  Button.defaultProps = {
-    href: undefined,
-  };
-  
-  Button.propTypes = {
-    href: PropTypes.string,
-  };
+function Button({ href, children, ...props }) {
+  const hasHref = Boolean(href);
+  const tag = hasHref ? Link : 'button';
+  return (
+    <ButtonWrapper
+      as={tag}
+      href={href}
+      {...props}
+    >
+      {children}
+    </ButtonWrapper>
+  );
+}
+
+Button.defaultProps = {
+  href: undefined,
+};
+
+Button.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export default Button;
